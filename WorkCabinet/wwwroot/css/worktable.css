@@ -1,0 +1,324 @@
+﻿.tabGroup {
+    float: left;
+    display: inline;
+    position: sticky;
+    height: calc(100% - 40px);
+    width: calc(100% - 60px);
+    margin-top: -82px;
+    left: 0px;
+    clear: both;
+    z-index: 2;
+}
+
+    .tabGroup li {
+        float: left;
+        display: block;
+        margin-right: 10px
+    }
+
+    .tabGroup input[type="radio"] {
+        position: absolute;
+        top: 0;
+        left: -9999px;
+    }
+
+    .tabGroup > li > label {
+        display: block;
+        position: relative;
+        height: 20px;
+        padding: 14px 12px;
+        font-family: 'Trebuchet MS';
+        font-size: 18px;
+        font-weight: 400;
+        text-transform: uppercase;
+        border-top: 1px solid #CDCDCD;
+        border-left: 1px solid #CDCDCD;
+        border-right: 1px solid #CDCDCD;
+        border-radius: 10px 10px 0 0;
+        background: white;
+        cursor: pointer;
+        top: 12px;
+        z-index: 1;
+        transition: all 0.4s;
+    }
+
+        .tabGroup > li > label:hover {
+            background: #BFD7F8;
+        }
+
+.workTable {
+    display: block;
+    position: relative;
+    width: 98%;
+    height: calc(100% + 4px);
+    margin-top: 60px;
+    margin-left: 1%;
+    margin-right: 1%;
+    border: 1px solid #CDCDCD;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.workHeader {
+    float: left;
+    display: block;
+    position: relative;
+    width: calc(100% + 2px);
+    height: 30px;
+    margin-left: -1px;
+    border-radius: 10px 10px 0px 0px;
+    background-color: #89B6F4;
+    z-index: 3;
+}
+
+.tableViewFooter {
+    float: left;
+    display: block;
+    position: absolute;
+    width: calc(100% + 22px);
+    height: 30px;
+    margin-left: -11px;
+    border-radius: 0px 0px 10px 10px;
+    background-color: #CDCDCD;
+    z-index: 3;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.rowsLabel {
+    font-family: 'Trebuchet MS';
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 20px;
+    color: black;
+}
+
+.tableRowsOnPage {
+    width: 40px;
+    height: 16px;
+    margin-top: 4px;
+    font-family: Impact;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.tableCurPage {
+    width: 30px;
+    height: 16px;
+    font-family: Impact;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.btnPage {
+    display: inline-block;
+    border: solid #89B6F4;
+    border-width: 0 4px 4px 0;
+    padding: 5px;
+}
+
+    .btnPage:hover {
+        display: inline-block;
+        border: solid white;
+        border-width: 0 4px 4px 0;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+.Prev {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.Next {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.tabContent {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 6px);
+    margin-top: 34px;
+    border-radius: 10px;
+    left: 10px;
+    z-index: 2;
+}
+
+.tabWorkspace {
+    font-family: 'Trebuchet MS';
+    font-size: 18px;
+    font-weight: 400;
+    width: 100%;
+    height: 100%;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-left: calc(50% - 10px);
+}
+
+.editPanel {
+    font-family: 'Trebuchet MS';
+    font-size: 24px;
+    font-weight: 400;
+    position: absolute;
+    width: calc(70% + 2px);
+    height: calc(100% - 14px);
+    left: 100%;
+    background-color: white;
+    opacity: 0;
+    z-index: 6;
+}
+
+    .editPanel > label {
+        display: block;
+        position: relative;
+        margin-top: 20px;
+        margin-left: 40px;
+    }
+
+.sideBorder {
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: calc(100% + 2px);
+    margin-top: -2px;
+    background-color: #89B6F4;
+}
+
+.editTable {
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 60px;
+    width: calc(100% - 60px);
+    border-spacing: 20px 10px;
+}
+
+    .editTable input {
+        font-family: 'Trebuchet MS';
+        font-size: 24px;
+        font-weight: 400;
+        width: 100%;
+    }
+
+.buttonUpdate {
+    font-family: 'Trebuchet MS';
+    font-size: 20px;
+    font-weight: 400;
+    height: 40px;
+    width: 100%;
+    color: white;
+    background-color: #89B6F4;
+    border: 1px solid white;
+    border-radius: 8px;
+    transition: all 0.4s;
+}
+
+    .buttonUpdate:hover {
+        background-color: #BFD7F8;
+        cursor: pointer;
+    }
+
+    .buttonUpdate:active {
+        background-color: #89B6F4;
+        transform: scale(0.90);
+    }
+
+.buttonAdd {
+    font-family: 'Trebuchet MS';
+    font-size: 20px;
+    font-weight: 400;
+    height: 40px;
+    width: 100%;
+    color: white;
+    background-color: #B4FF32;
+    border: 1px solid white;
+    border-radius: 8px;
+    transition: all 0.4s;
+}
+
+    .buttonAdd:hover {
+        background-color: #DCFF9F;
+        cursor: pointer;
+    }
+
+    .buttonAdd:active {
+        background-color: #B4FF32;
+        transform: scale(0.90);
+    }
+
+.buttonCancel {
+    font-family: 'Trebuchet MS';
+    font-size: 20px;
+    font-weight: 400;
+    height: 40px;
+    width: 100%;
+    color: white;
+    background-color: #FF5A8E;
+    border: 1px solid white;
+    border-radius: 8px;
+    transition: all 0.4s;
+}
+
+    .buttonCancel:hover {
+        background-color: #FF9DBC;
+        cursor: pointer;
+    }
+
+    .buttonCancel:active {
+        background-color: #FF5A8E;
+        transform: scale(0.90);
+    }
+
+.buttonCloseEditPanel {
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0px;
+    margin-top: 5px;
+    margin-left: calc(100% - 25px);
+    border: 4px solid white;
+    border-radius: 4px;
+    transition: all 0.4s;
+}
+
+    .buttonCloseEditPanel:hover {
+        background-color: #89B6F4;
+        border: 4px solid #89B6F4;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+.addHolderForm {
+    margin-top: 20px;
+    margin-left: calc(50% - 320px);
+    width: 30%;
+    border-spacing: 10px 30px;
+}
+
+    .addHolderForm input {
+        font-family: 'Trebuchet MS';
+        font-size: 18px;
+        font-weight: 400;
+        width: 100%;
+    }
+
+[id^="tab"]:checked + label {
+    background-color: #89B6F4;
+    color: white;
+    top: 5px;
+}
+
+[id^="tab"]:checked ~ [id^="tab-content"] {
+    display: block;
+}

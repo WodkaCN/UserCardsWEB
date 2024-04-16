@@ -1,0 +1,40 @@
+html, body, .main {
+    height: 100%;
+}
+
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+    overflow: hidden;
+}
+
+.delimiter {
+    display: flex;
+    position: absolute;
+    background-color: #D8D8D8;
+    height: 80px;
+    width: 110%;
+    top: 70px;
+    left: -20px;
+    z-index: -100;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.hidden {
+    display: none;
+}

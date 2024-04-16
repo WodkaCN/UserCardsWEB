@@ -1,0 +1,234 @@
+﻿@{
+    ViewData["Title"] = "Home page";
+    var PUBLIC_ADDRESS = Environment.GetEnvironmentVariable("PUBLIC_ADDRESS");
+}
+
+@section Scripts
+    {
+    <script>
+        var globalPublicAddress = "";
+
+        var globalPagesCnt = "";
+        var globalEditPanelState = "";
+
+        var globalHiddenHolderUid = "";
+        var globalHiddenHolderBD = "";
+
+        var globalHiddenCardId = "";
+        var globalHiddenCardFiolat = "";
+
+        (function () {
+            globalPublicAddress = "@PUBLIC_ADDRESS";
+
+            globalPagesCnt = 10;
+            globalEditPanelState = "hide";
+
+            CurrentPage(0);
+            GetPagesCount();
+        })()
+    </script>
+}
+
+<style>
+    .tabulator {
+        font-size: 20px;
+    }
+</style>
+
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<div class="text-center" style="height:100%">
+    <div id="delimiter" class="delimiter">
+    </div>
+    <div class="workTable">
+        <div class="workHeader">
+        </div>
+        <ul class="tabGroup" role="tablist">
+            <li>
+                <input type="radio" name="tabGroup" id="tab1" checked />
+                <label for="tab1"
+                       role="tab"
+                       aria-selected="true"
+                       aria-controls="panel1"
+                       tabindex="0">
+                    Таблица держателей
+                </label>
+                <div id="tab-content1"
+                     class="tabContent"
+                     role="tabpanel"
+                     aria-labelledby="cpanel1"
+                     aria-hidden="false">
+                    <div class="tabWorkspace" style="font-family:'Trebuchet MS';">
+                        <div id="editPanel" class="editPanel">
+                            <div class="sideBorder"></div>
+                            <label>Редактирование держателя</label>
+                            <table id="editTable" class="editTable">
+                                <tr>
+                                    <td>
+                                        <label>Фамилия: </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="holderF" />
+                                    </td>
+                                    <td>
+                                        <label>Имя: </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="holderI" />
+                                    </td>
+                                    <td>
+                                        <label>Отчество: </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="holderO" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Местро работы: </label>
+                                    </td>
+                                    <td colspan="5">
+                                        <input type="text" id="holderWP" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                    </td>
+                                    <td>
+                                        <button class="buttonUpdate" onclick="UpdateHolder();">Обновить данные</button>
+                                    </td>
+                                </tr>
+                            </table>
+                            <label>Карты держателя</label>
+                            <table id="editTable" class="editTable" style="height:calc(100% - 300px)">
+                                <tr>
+                                    <td colspan="6" style="width: 100%">
+                                        <div id="cardsTable" style="height:100%"></div>
+                                    </td>
+                                </tr>
+                                <tr style="height:30px;">
+                                    <td style="width:90px;">
+                                        <label>Номер карты: </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="cardNum" />
+                                    </td>
+                                    <td style="width:90px;">
+                                        <label>Номер счета: </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="cardAcc" />
+                                    </td>
+                                </tr>
+                                <tr style="height:30px;">
+                                    <td>
+                                        <label>Срок до: </label>
+                                    </td>
+                                    <td>
+                                        <input style="width:200px" type="date" id="expire" />
+                                    </td>
+                                    <td>
+                                        <label>CVC: </label>
+                                    </td>
+                                    <td>
+                                        <input style="width:80px" type="text" id="cvc" />
+                                    </td>
+                                </tr>
+                                <tr id="addCardRow" style="height:30px;">
+                                    <td colspan="3">
+                                    </td>
+                                    <td>
+                                        <button class="buttonAdd" onclick="AddCard();">Добавить карту</button>
+                                    </td>
+                                </tr>
+                                <tr id="updateCardRow" style="display:none;height:30px;">
+                                    <td colspan="2">
+                                        <button class="buttonUpdate" onclick="UpdateCard();">Обновить данные карты</button>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <button class="buttonCancel" onclick="EditCardCancelClick();">Отмена</button>
+                                    </td>
+                                </tr>
+                            </table>
+                            <img class="buttonCloseEditPanel" src="/images/delete.svg" onclick="EditPanelToggle('hide');" />
+                        </div>
+                        <div id="holdersTable" style="height:calc(100% - 16px); width:100%; z-index:4">
+                        </div>
+                        <div class="tableViewFooter unselectable">
+                            <label class="rowsLabel">Записей на странице: </label>
+                            <input type="number" class="tableRowsOnPage" id="rowsOnPage" minlength="1" maxlength="2" size="4" value="30" onchange="CurrentPage(0);" />
+                            <div style="display:inline-block; margin-left:calc(50% - 210px);"><i class="btnPage Prev" onclick="CurrentPage(-1);"></i></div>
+                            <input type="number" class="tableCurPage" id="curPage" minlength="1" maxlength="2" size="3" minvalue="1" maxvalue="99" value="1" onchange="CurrentPage(0);" />
+                            <div style="display:inline-block;"><i class="btnPage Next" onclick="CurrentPage(1)"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="tabGroup" id="tab2" />
+                <label for="tab2"
+                       role="tab"
+                       aria-selected="false"
+                       aria-controls="panel2"
+                       tabindex="0">
+                    Добавить держателя
+                </label>
+                <div id="tab-content2"
+                     class="tabContent"
+                     aria-labelledby="cpanel2"
+                     aria-hidden="true">
+                    <div class="tabWorkspace">
+                        <table id="addHolderForm" class="addHolderForm">
+                            <tr>
+                                <td style ="width:100px">
+                                    <label>Фамилия: </label>
+                                </td>
+                                <td style="width:350px">
+                                    <input type="text" id="nHolderF" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Имя: </label>
+                                </td>
+                                <td>
+                                    <input type="text" id="nHolderI" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Отчество: </label>
+                                </td>
+                                <td>
+                                    <input type="text" id="nHolderO" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Дата рождения</label>
+                                </td>
+                                <td>
+                                    <input style="width:200px" type="date" id="nHolderBD" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Место работы</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="nHolderWP" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button class="buttonAdd" onclick="AddHolder();">Добавить держателя</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

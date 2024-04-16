@@ -1,0 +1,5 @@
+{
+  "UserCardsDB": {
+    "ConnectionString": "Server=192.168.0.104,14333; Integrated Security=False; Persist Security Info=False; User Id=sa; Password=Zzzzzzz1; Initial Catalog=UserCards; Encrypt=False; Trust Server Certificate=False;"
+  }
+}

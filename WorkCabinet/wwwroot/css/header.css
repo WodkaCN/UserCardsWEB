@@ -1,0 +1,37 @@
+﻿.logoTextWork {
+    position: absolute;
+    font-family: 'Trebuchet MS';
+    font-weight: 900;
+    font-size: 22pt;
+    left: 7px;
+    top: 1px;
+    color: white;
+}
+
+.logoTextCabi {
+    position: absolute;
+    font-family: 'Trebuchet MS';
+    font-weight: 100;
+    font-size: 18pt;
+    left: 50px;
+    top: 28px;
+    color: white;
+}
+
+.logoTextdotNET {
+    position: absolute;
+    font-family: 'Trebuchet MS';
+    font-size: 38pt;
+    left: 140px;
+    top: 2px;
+}
+
+.logoBox {
+    position: absolute;
+    width: 140px;
+    height: 58px;
+    background-color: #89B6F4;
+    left: 40px;
+    top: 5px;
+    border-radius: 5px;
+}

@@ -1,0 +1,58 @@
+version: '3.4'
+
+services:
+
+  #nginx:
+  #  image: nginx-proxy
+  #  build:
+  #    context: .
+  #    dockerfile: nginx/Dockerfile
+  #  container_name: nginx-proxy
+  #  restart: unless-stopped
+  #  ports: 
+  #    - 80:80
+  #  networks:
+  #    - front-tier
+
+  workcabinet:
+    image: workcabinet    
+    container_name: WorkCabinet
+    build:
+      context: .
+      dockerfile: WorkCabinet/Dockerfile
+    restart: unless-stopped
+    environment:
+      - "PUBLIC_ADDRESS=http://192.168.0.104:8080"
+    ports: 
+      - 5000:80
+    networks:
+      - front-tier
+    
+  usercards-api:
+    image: usercardsapi
+    container_name: UserCardsAPI
+    build:
+      context: .
+      dockerfile: UserCardsAPI/Dockerfile
+    restart: unless-stopped
+    ports: 
+      - 8080:80
+    networks:
+      - front-tier
+      - back-tier
+    
+  usercards-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: UserCardsDB
+    restart: unless-stopped
+    environment:
+      - "ACCEPT_EULA=Y"
+      - "MSSQL_SA_PASSWORD=Zzzzzzz1"
+    ports:
+      - 14333:1433
+    networks:
+      - back-tier
+
+networks:
+  front-tier:
+  back-tier:
